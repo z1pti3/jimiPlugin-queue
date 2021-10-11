@@ -6,9 +6,9 @@ from plugins.queue.models import trigger
 
 import jimi
 
-queuePages = Blueprint('queuePages', __name__)
+pluginPages = Blueprint('queuePages', __name__)
 
-@queuePages.route("/public/<token>/",methods=["POST"])
+@pluginPages.route("/public/<token>/",methods=["POST"])
 def __PUBLIC__queueWebHook(token):
     webhook = trigger._queueTrigger().getAsClass(query={ "webhookToken" : token })
     if len(webhook) == 1:
