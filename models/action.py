@@ -9,6 +9,7 @@ class _queueAdd(jimi.action._action):
     queueEventDataStr = str()
     queueEventData = dict()
     autoClear = True
+    delay = 0
 
     def doAction(self,data):
         queueTriggerID = jimi.helpers.evalString(self.queueTriggerID,{"data" : data["flowData"], "eventData" : data["eventData"], "conductData" : data["conductData"], "persistentData" :  data["persistentData"] })
@@ -27,7 +28,7 @@ class _queueAdd(jimi.action._action):
             queueEvent = queueEventData
 
         if queueEvent:
-            queue._queueEvent().new(self.acl,queueTriggerID,queueEvent,self.autoClear)
+            queue._queueEvent().new(self.acl,queueTriggerID,queueEvent,self.autoClear,self.delay)
             return { "result" : True, "rc" : 0, "msg" : "New queueEvent created."  }
         else:
             return { "result" : False, "rc" : 500, "msg" : "No queue event data provided."  }

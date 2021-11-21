@@ -17,7 +17,7 @@ class _queueTrigger(jimi.trigger._trigger):
         self.result = { "events" : [], "var" : {}, "plugin" : {} }
         events = []
         bulkClass = jimi.db._bulk()
-        queueTriggerEvents = queue._queueEvent().getAsClass(query={ "queueTriggerID" : self._id, "runTime" : 0 },limit=self.limit)
+        queueTriggerEvents = queue._queueEvent().getAsClass(query={ "queueTriggerID" : self._id, "runTime" : 0, "delay" : { "$lt" : time.time() } },limit=self.limit)
         for event in queueTriggerEvents:
             if event.autoClear:
                 event.runTime = int(time.time())
