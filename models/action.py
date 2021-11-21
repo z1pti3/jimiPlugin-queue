@@ -28,7 +28,7 @@ class _queueAdd(jimi.action._action):
             queueEvent = queueEventData
 
         if queueEvent:
-            queueEventID = queue._queueEvent().new(self.acl,queueTriggerID,queueEvent,self.autoClear,self.delay).inserted_id
+            queueEventID = str(queue._queueEvent().new(self.acl,queueTriggerID,queueEvent,self.autoClear,self.delay).inserted_id)
             return { "result" : True, "rc" : 0, "msg" : "New queueEvent created.", "queueEventID" : queueEventID }
         else:
             return { "result" : False, "rc" : 500, "msg" : "No queue event data provided."  }
