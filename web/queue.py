@@ -6,6 +6,8 @@ from plugins.queue.models import trigger
 
 import jimi
 
+pluginPagesHidden = True
+
 pluginPages = Blueprint('queuePages', __name__)
 
 @pluginPages.route("/public/<token>/",methods=["POST"])
